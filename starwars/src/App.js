@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef} from 'react'
 import { useState} from 'react';
 import axios from 'axios';
@@ -6,6 +7,7 @@ import './App.css';
 import Starship from './Components/Starship'
 import StarshipResults from './Components/StarshipResults';
 import Header from './Components/Header.js'
+import LoadingPage from './Components/LoadingPage'
 
 
 let count = 0;
@@ -14,18 +16,20 @@ function App() {
  
   let url ='https://swapi.dev/api/starships';
   const [starshipArray, setStarshipArray] = useState([]);
- 
+  const [loading, setLoading] = useState(true)
   useEffect(()=>{
+    
     count = count+1;
-    if(count === 1){
+    if(count){
       axios.get(url)
-      .then(result => {
+      .then(async(result) => {
         console.log('!requestmade!')
-        setStarshipArray(result.data.results)
+        await setStarshipArray(result.data.results)
+        await setLoading(false)
         console.log('!!!!!!!!!!$$$$$$$'+ starshipArray)
       }).catch((err)=>{console.log(err)})
       
-  }}) 
+  }},[]) 
         
         
   
@@ -34,6 +38,8 @@ function App() {
  
  
   return (
+    <>
+    { loading ===false ? (
     <BrowserRouter>
     <div className="App">
     <Header /> 
@@ -44,7 +50,14 @@ function App() {
       return <Starship starShipList={targetStarships}/>
     }}/>
     </div>
-    </BrowserRouter>
+    </BrowserRouter> ) : (
+      <div>
+       <Header />   
+    <LoadingPage />
+    </div>
+
+    )}
+    </>
   );
 }
 

@@ -1,9 +1,8 @@
-function LoadingPage (){
-    return(
-        <div>
-            <h1>This page is loading</h1>
-        </div>
-    )
+function LoadingPage() {
+    
+      return (
+        <h1>Your Page Is Loading</h1>
+      )
 }
-
-export default LoadingPage;
+    export default LoadingPage;
+ 

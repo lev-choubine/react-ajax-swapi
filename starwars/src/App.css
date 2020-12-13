@@ -10,6 +10,10 @@
   
 }
 
+h1 {
+  text-align: center;
+}
+
 .link{
  color: white;
  text-decoration: none;
