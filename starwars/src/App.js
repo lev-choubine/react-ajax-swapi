@@ -43,6 +43,7 @@ function App() {
     <BrowserRouter>
     <div className="App">
     <Header /> 
+    
     <Route path="/" exact render={()=>{return <StarshipResults starShipList={starshipArray}/>}} />
     <Route path="/Starship/:name" render={(routeInfo)=>{
       const name= routeInfo.match.params.name

@@ -19,6 +19,7 @@ function PilotList(props){
               
               async function getPilots(urls) {
                 const promises = urls.map(url => fetch(url).then(res => res.json()));
+                console.log('requestmande')
                 const pilotObjects = await Promise.all(promises);
                 return pilotObjects;
               }
